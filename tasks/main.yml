@@ -1,0 +1,16 @@
+---
+
+- include_vars: freebsd.yml
+  when: ansible_distribution == 'FreeBSD'
+
+- include_vars: debian.yml
+  when: ansible_distribution == 'Debian'
+
+- set_fact: _sqlgrey_config="{{ sqlgrey_default_config | combine(sqlgrey_config, recursive=True) }}"
+  no_log: true
+
+- set_fact: _sqlgrey_mysql="{{ sqlgrey_default_mysql | combine(sqlgrey_mysql, recursive=True) }}"
+  no_log: true
+
+- include: install.yml
+- include: configure.yml

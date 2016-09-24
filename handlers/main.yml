@@ -1,0 +1,4 @@
+---
+
+- name: restart sqlgrey
+  service: name=sqlgrey state=restarted

@@ -1,0 +1,32 @@
+---
+dependencies: []
+
+galaxy_info:
+  author: The Mailserver Project
+  description: Provisions SQLgrey postfix policy service
+  company: github.com/mailserver
+  license: MIT
+  min_ansible_version: 1.9
+  platforms:
+    - name: Debian
+      versions:
+        - jessie
+        - wheezy
+    - name: Ubuntu
+      versions:
+        - trusty
+    - name: FreeBSD
+      versions:
+        - 9.3
+        - 10.1
+        - 10.2
+        - 10.3
+  galaxy_tags:
+    - mailserver
+    - mail
+    - mta
+    - postfix
+    - anti-spam
+    - spam
+    - greylist
+    - milter

@@ -1,0 +1,29 @@
+---
+
+- name: Enable services
+  service:
+    name: sqlgrey
+    enabled: yes
+
+- name: Sync config
+  template:
+    src: sqlgrey.conf.j2
+    dest: "{{ _sqlgrey_config.config_dir }}/sqlgrey.conf"
+    mode: "u=rw,g=,o="
+  notify:
+    - restart sqlgrey
+
+- name: Manually update sqlgrey whitelists for the first time
+  command: "{{ update_sqlgrey_binary_path }}"
+  notify:
+    - restart sqlgrey
+
+- name: Cronjob is configured to automatically update SQLgrey
+  cron:
+    name: ansible_mailserver_update_sqlgrey_config_job
+    special_time: daily
+    job: "{{ update_sqlgrey_binary_path }}"
+    user: "{{ _sqlgrey_config.daemon_user }}"
+    state: present 
+  notify:
+    - restart sqlgrey

@@ -1,0 +1,49 @@
+# Notes:
+# - Unless specified otherwise commented settings are SQLgrey's defaults
+
+## username and groupname the daemon runs as
+user = {{ _sqlgrey_config.milter.user }}
+group = {{ _sqlgrey_config.milter.group }} 
+
+## Socket
+# On which socket do SQLgrey wait for queries
+# to bind on a UNIX socket, use the following:
+unix = {{ _sqlgrey_config.milter.socket_path }}
+
+## Database settings
+db_user = {{ _sqlgrey_mysql.user }}
+db_pass = {{ _sqlgrey_mysql.pass }}
+db_dsn = DBI:mysql:database={{ _sqlgrey_mysql.db }};host={{ _sqlgrey_mysql.host }};port={{ _sqlgrey_mysql.port }}
+
+## Optin/Optout (see README.OPTINOUT for details)
+# - optin  : one must optin to have its (incoming) messages being greylisted
+optmethod = optin
+
+## Greylisting delays
+# Explicitly set the default settings
+reconnect_delay = 5
+max_connect_age = 24
+
+## Auto whitelists settings
+# default is tailored for small sites
+awl_age = 60
+# The number of validated addresses to add a whole domain to AWL
+group_domain_level = 2
+
+## X-Greylist header added?
+# This adds delay, whitelist and autowhitelist information in the headers
+prepend = 1
+
+## SQLgrey return value.
+# SQLgrey can tell Postfix to:
+# - immediately reject a message with a temporary reject code
+# - only do so if following rules would allow the message to pass
+# The first choice will prevent Postfix from spending time evaluating
+# potentially expensive rules.
+# `delay` or `immed` - delay continues evaluation in the Postfix pipeline
+reject_first_attempt = immed
+reject_early_reconnect = immed
+
+## Postmaster address
+# who gets urgent notifications (DB is down for example)
+admin_mail = postmaster

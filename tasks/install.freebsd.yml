@@ -1,0 +1,16 @@
+---
+
+# TODO needs custom compile flags
+- name: Install
+  pkgng:
+    name: sqlgrey
+    state: present
+
+- name: Install rc.conf.d scripts
+  template:
+    src: "rc.conf.d/{{ item }}.j2"
+    dest: "/etc/rc.conf.d/{{ item }}"
+  with_items:
+    - sqlgrey
+  notify:
+    - restart sqlgrey

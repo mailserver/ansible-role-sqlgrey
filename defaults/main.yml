@@ -1,0 +1,22 @@
+---
+# More vars in vars/* 
+
+os:
+  logdir: /var/log
+  rundir: /var/run
+  prefix:
+
+sqlgrey_default_config:
+  config_dir: "{{os.prefix}}/etc/sqlgrey"
+  daemon_user: sqlgrey
+  daemon_group: sqlgrey
+  milter:
+    group: milter
+    socket_path: "{{os.rundir}}/sqlgrey.sock"
+
+sqlgrey_mysql:
+  host: "127.0.0.1"
+  port: 3306
+  user: ""
+  password: ""
+  db: "maildb"
