@@ -14,7 +14,7 @@ sqlgrey_default_config:
     group: milter
     socket_path: "{{os.rundir}}/sqlgrey.sock"
 
-sqlgrey_mysql:
+sqlgrey_default_mysql:
   host: "127.0.0.1"
   port: 3306
   user: ""
