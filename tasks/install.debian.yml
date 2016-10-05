@@ -1,6 +1,6 @@
 ---
 
-- name: Install
+- name: Dependencies are installed via Ansible
   apt: 
     name: "{{ item }}"
     state: installed

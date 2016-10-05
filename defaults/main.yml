@@ -19,4 +19,4 @@ sqlgrey_default_mysql:
   port: 3306
   user: ""
   password: ""
-  db: "maildb"
+  database: "mail"

@@ -13,7 +13,7 @@ unix = {{ _sqlgrey_config.milter.socket_path }}
 ## Database settings
 db_user = {{ _sqlgrey_mysql.user }}
 db_pass = {{ _sqlgrey_mysql.password }}
-db_dsn = DBI:mysql:database={{ _sqlgrey_mysql.db }};host={{ _sqlgrey_mysql.host }};port={{ _sqlgrey_mysql.port }}
+db_dsn = DBI:mysql:database={{ _sqlgrey_mysql.database }};host={{ _sqlgrey_mysql.host }};port={{ _sqlgrey_mysql.port }}
 
 ## Optin/Optout (see README.OPTINOUT for details)
 # - optin  : one must optin to have its (incoming) messages being greylisted
